@@ -1,10 +1,9 @@
 {
     "name": "danmarinescu/db-layer",
     "description": "Zend Framework 2 DB Layer providing easy access to DB without the need of a model , it returning a ResultSet",
-    "type": "library",
     "require": {
-        "php": ">= 5.3",
-        "zendframework/zend-servicemanager": "=> 2.3"
+        "php": ">=5.3",
+        "zendframework/zendframework": "^2.3"
     },
     "authors": [
         {
