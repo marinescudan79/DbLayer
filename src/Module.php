@@ -4,7 +4,7 @@
  * @Email: dan.m@my1hr.com
  * @Date:   2015-07-08 05:57:56
  * @Last Modified by:   Dan Marinescu
- * @Last Modified time: 2015-07-11 04:09:09
+ * @Last Modified time: 2015-07-11 23:47:26
 */
 namespace DbLayer;
 
@@ -23,7 +23,7 @@ class Module implements AutoloaderProviderInterface, ConfigProviderInterface
         return array(
             'Zend\Loader\StandardAutoloader' => array(
                 'namespaces' => array(
-                    __NAMESPACE__ => __DIR__ . '/src/' . __NAMESPACE__,
+                    __NAMESPACE__ => __DIR__ . '/../src/' . __NAMESPACE__,
                 )
             )
         );
@@ -31,6 +31,6 @@ class Module implements AutoloaderProviderInterface, ConfigProviderInterface
 
     public function getConfig()
     {
-        return include __DIR__ . '/config/module.config.php';
+        return include __DIR__ . '/../config/module.config.php';
     }
 }
