@@ -1,6 +1,9 @@
 {
     "name": "danmarinescu/db-layer",
     "description": "Zend Framework 2 DB Layer providing easy access to DB without the need of a model , it returning a ResultSet",
+    "keywords": ["layer","database","zf2","zend framework 2"],
+    "homepage": "http://marinescudan79.github.io/DbLayer",
+    "license": "MIT",
     "require": {
         "php": ">=5.3",
         "zendframework/zendframework": "^2.3"
