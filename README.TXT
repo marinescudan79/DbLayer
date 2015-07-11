@@ -1,3 +1,7 @@
+
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/marinescudan79/DbLayer/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/marinescudan79/DbLayer/?branch=master)
+[![Build Status](https://scrutinizer-ci.com/g/marinescudan79/DbLayer/badges/build.png?b=master)](https://scrutinizer-ci.com/g/marinescudan79/DbLayer/build-status/master)
+
 DbLayer - README
 ============================================================
 
