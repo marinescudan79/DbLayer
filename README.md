@@ -13,6 +13,72 @@ Copyright (c) 2015:
 Description:
     DbLayer is a PHP collection of classes for quering databases in ZendFramework2 on-the-fly without requiring extensions such as models or entities.
 
+Layer Use:
+
+    Get intsnace of a DB Table :
+
+        $tableInstance = $this->getServiceLocator()->get('DbLayerService')->get($tableName);
+
+    Method's provided by the $tableInstance :
+        Select :
+        $tableInstance->select()->fetchAll();
+            Returning all records from a DB Table.
+
+        $tableInstance->select()->fetchOne();
+            Returning a single record from a DB Table.
+
+        $tableInstance->select()->fetchPaginated($paginator);
+            Returning paginated records from a DB Table ready to use with ZF2 pagination view helper.
+
+
+        $tableInstance->insert($data);
+
+        $tableInstance->update($data, $where);
+
+        $data = array(
+            'TableColumn' => 'TableValue',
+            'TableColumn2' => 'TableValue2',
+        );
+
+        $tableInstance->delete($where);
+
+        Layer instance methods :
+
+            select($where) accepts an array with WHERE predicate conditions
+                $where = array(
+                    'id = ?' => $id
+                );
+
+            join($join) accepts an array for joining other tables
+                $join = array(
+                    array(
+                        'table_name' => 'JoinedTable',
+                        'join_condition' => 'Table.Id = JoinedTable.TableId',
+                        'columns' => array('JoinedTableColumn', 'AliasedTableName' => 'JoinedTableColumn2'),
+                        'join' => 'left',
+                    ),
+                    array(
+                        'table_name' => 'JoinedTable',
+                        'join_condition' => 'Table.Id = TableAliasName.TableId',
+                        'columns' => array('JoinedTableAliasNameColumn', 'AliasedTableName' => 'JoinedTableAliasNameColumn2'),
+                        'join' => 'left',
+                        'alias' => 'TableAliasName'
+                    ),
+                );
+
+            limit(2) limiting results returned to 2
+
+            order($order) ordering results
+                $order = array(
+                    'Table.Id' => 'ASC',
+                    'JoinedTable.TableId' => 'DESC',
+                );
+
+            having($having)
+
+            group($group)
+
+
 Main Features:
 
 Installation :
