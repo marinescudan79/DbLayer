@@ -1,0 +1,16 @@
+{
+    "name": "danmarinescu/db-layer",
+    "description": "Easy to use DB Layer without the need to use a model ( it returning a ResultSet )",
+    "type": "library",
+    "require": {
+        "php": ">5.3",
+        "zendframework/zend-servicemanager": "^2.5@dev"
+    },
+    "authors": [
+        {
+            "name": "Dan Marinescu",
+            "email": "dan.m@my1hr.com"
+        }
+    ],
+    "minimum-stability": "dev"
+}
