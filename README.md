@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/marinescudan79/DbLayer.svg?branch=master)](https://travis-ci.org/marinescudan79/DbLayer)
+
 DbLayer - README
 ============================================================
 
