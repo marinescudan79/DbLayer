@@ -82,7 +82,7 @@ Layer Use:
 Main Features:
 
 Installation :
-    composer require "danmarinescu/db-layer":"dev-master"
+    composer require danmarinescu/db-layer
 
 License:
     Copyright (C) 2015  Dan Marinescu
