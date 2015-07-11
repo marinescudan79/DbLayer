@@ -4,7 +4,7 @@
  * @Email: dan.m@my1hr.com
  * @Date:   2015-07-11 04:20:10
  * @Last Modified by:   Dan Marinescu
- * @Last Modified time: 2015-07-11 21:54:54
+ * @Last Modified time: 2015-07-12 02:51:50
  */
 namespace DbLayer\Service;
 
@@ -35,7 +35,11 @@ class TableGateway extends AbstractTableGateway
 
     public function __toString()
     {
-        return $this->getSql()->getSqlStringForSqlObject($this->query);
+        try {
+            return $this->getSql()->getSqlStringForSqlObject($this->query);
+        } catch (\Exception $e) {
+            return $this->getSql()->buildSqlString($this->query);
+        }
     }
 
     public function select($where = null)
@@ -56,7 +60,7 @@ class TableGateway extends AbstractTableGateway
 
         $this->beginTransaction();
         try {
-            parent::insertWith($this->query);
+            $this->insertWith($this->query);
             $insertId = $this->adapter->getDriver()->getConnection()->getLastGeneratedValue();
             $this->commit();
         } catch (\Exception $e) {
@@ -80,14 +84,14 @@ class TableGateway extends AbstractTableGateway
 
         $this->beginTransaction();
         try {
-            parent::updateWith($this->query);
+            $this->updateWith($this->query);
             $this->commit();
         } catch (\Exception $e) {
             $this->rollback();
             throw new \Exception($e);
         }
 
-        return true;
+        return 1;
     }
 
     public function delete($where)
@@ -102,14 +106,14 @@ class TableGateway extends AbstractTableGateway
 
         $this->beginTransaction();
         try {
-            parent::deleteWith($this->query);
+            $this->deleteWith($this->query);
             $this->commit();
         } catch (\Exception $e) {
             $this->rollback();
             throw new \Exception($e);
         }
 
-        return true;
+        return 1;
     }
 
     public function join($join = null)
@@ -161,14 +165,14 @@ class TableGateway extends AbstractTableGateway
 
     public function findAll()
     {
-        return parent::selectWith($this->query);
+        return $this->selectWith($this->query);
     }
 
     public function findOne()
     {
         $this->query->limit(1);
 
-        return parent::selectWith($this->query);
+        return $this->selectWith($this->query);
     }
 
     public function findPaginated($paginator = null)
