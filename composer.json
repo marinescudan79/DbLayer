@@ -13,8 +13,6 @@
     ],
     "minimum-stability": "dev",
     "autoload": {
-        "psr-0": {
-            "DbLayer": "src/"
-        }
+        "psr-4": {"DbLayer\\": "src/"}
     }
 }
