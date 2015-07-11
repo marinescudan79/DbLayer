@@ -1,15 +1,15 @@
 {
     "name": "danmarinescu/db-layer",
-    "description": "Easy to use DB Layer without the need to use a model ( it returning a ResultSet )",
+    "description": "Zend Framework 2 DB Layer providing easy access to DB without the need of a model , it returning a ResultSet",
     "type": "library",
     "require": {
-        "php": ">5.3",
-        "zendframework/zend-servicemanager": "^2.5@dev"
+        "php": ">= 5.3",
+        "zendframework/zend-servicemanager": "=> 2.3"
     },
     "authors": [
         {
             "name": "Dan Marinescu",
-            "email": "dan.m@my1hr.com"
+            "email": "dan.marinescu79@gmail.com"
         }
     ],
     "minimum-stability": "dev"
