@@ -11,5 +11,10 @@
             "email": "dan.marinescu79@gmail.com"
         }
     ],
-    "minimum-stability": "dev"
+    "minimum-stability": "dev",
+    "autoload": {
+        "psr-0": {
+            "DbLayer": "src/"
+        }
+    }
 }
