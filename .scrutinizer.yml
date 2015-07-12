@@ -1,11 +1,3 @@
 filter:
     excluded_paths:
         - tests/*
-build:
-    tests:
-        override:
-            -
-                command: 'phpunit --coverage-clover=./build/coverage/db-layer.cov'
-                coverage:
-                    file: './build/coverage/db-layer.cov'
-                    format: 'php-clover'
