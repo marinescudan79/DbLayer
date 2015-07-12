@@ -21,7 +21,7 @@ build:
     tests:
         override:
             -
-                command: 'phpunit --coverage-clover=some-file.xml'
+                command: 'phpunit --coverage-clover=/home/scrutinizer/build/some-file.xml'
                 coverage:
                     file: 'some-file.xml'
                     format: 'php-clover'
