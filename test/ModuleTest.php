@@ -40,6 +40,16 @@ class ModuleTest extends PHPUnit_Framework_TestCase
     /**
      * @covers DbLayer\Module::getConfig()
      */
+    public function testGetAutoloaderConfig()
+    {
+        $this->assertTrue(is_array($this->module->getAutoloaderConfig()));
+
+        \Zend\Debug\Debug::dump($this->module->getAutoloaderConfig());
+    }
+
+    /**
+     * @covers DbLayer\Module::getConfig()
+     */
     public function testGetConfig()
     {
         $this->assertTrue(is_array($this->module->getConfig()));
