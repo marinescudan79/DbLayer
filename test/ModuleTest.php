@@ -17,7 +17,7 @@
  * and is licensed under the MIT license.
  */
 
-namespace DbLayertest;
+namespace DbLayerTest;
 
 use PHPUnit_Framework_TestCase;
 use DbLayer\Module;
