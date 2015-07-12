@@ -1,6 +1,7 @@
 
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/marinescudan79/DbLayer/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/marinescudan79/DbLayer/?branch=master)
 [![Build Status](https://scrutinizer-ci.com/g/marinescudan79/DbLayer/badges/build.png?b=master)](https://scrutinizer-ci.com/g/marinescudan79/DbLayer/build-status/master)
+[![Latest Stable Version](https://poser.pugx.org/danmarinescu/db-layer/v/stable)](https://packagist.org/packages/danmarinescu/db-layer) [![Total Downloads](https://poser.pugx.org/danmarinescu/db-layer/downloads)](https://packagist.org/packages/danmarinescu/db-layer) [![Latest Unstable Version](https://poser.pugx.org/danmarinescu/db-layer/v/unstable)](https://packagist.org/packages/danmarinescu/db-layer) [![License](https://poser.pugx.org/danmarinescu/db-layer/license)](https://packagist.org/packages/danmarinescu/db-layer)
 
 DbLayer - README
 ============================================================
