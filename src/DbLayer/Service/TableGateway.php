@@ -4,7 +4,7 @@
  * @Email: dan.m@my1hr.com
  * @Date:   2015-07-11 04:20:10
  * @Last Modified by:   Dan Marinescu
- * @Last Modified time: 2015-07-12 03:11:26
+ * @Last Modified time: 2015-07-12 03:24:58
  */
 namespace DbLayer\Service;
 
@@ -25,7 +25,6 @@ class TableGateway extends AbstractTableGateway
     public $insert;
     public $update;
     public $delete;
-
 
     public function __construct($table, Adapter $adapter)
     {
