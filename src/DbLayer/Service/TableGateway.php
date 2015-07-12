@@ -4,7 +4,7 @@
  * @Email: dan.m@my1hr.com
  * @Date:   2015-07-11 04:20:10
  * @Last Modified by:   Dan Marinescu
- * @Last Modified time: 2015-07-12 02:51:50
+ * @Last Modified time: 2015-07-12 03:11:26
  */
 namespace DbLayer\Service;
 
@@ -21,7 +21,10 @@ class TableGateway extends AbstractTableGateway
     public $lastInsertValue;
     public $table;
     public $adapter;
-    public $query;
+    public $select;
+    public $insert;
+    public $update;
+    public $delete;
 
 
     public function __construct($table, Adapter $adapter)
@@ -36,18 +39,18 @@ class TableGateway extends AbstractTableGateway
     public function __toString()
     {
         try {
-            return $this->getSql()->getSqlStringForSqlObject($this->query);
+            return $this->getSql()->getSqlStringForSqlObject($this->select);
         } catch (\Exception $e) {
-            return $this->getSql()->buildSqlString($this->query);
+            return $this->getSql()->buildSqlString($this->select);
         }
     }
 
     public function select($where = null)
     {
-        $this->query = $this->getSql()->select();
+        $this->select = $this->getSql()->select();
 
         if (!empty($where)) {
-            $this->query->where($where);
+            $this->select->where($where);
         }
 
         return $this;
@@ -55,12 +58,12 @@ class TableGateway extends AbstractTableGateway
 
     public function insert($set)
     {
-        $this->query = $this->getSql()->insert();
-        $this->query->values($set);
+        $this->insert = $this->getSql()->insert();
+        $this->insert->values($set);
 
         $this->beginTransaction();
         try {
-            $this->insertWith($this->query);
+            $this->insertWith($this->insert);
             $insertId = $this->adapter->getDriver()->getConnection()->getLastGeneratedValue();
             $this->commit();
         } catch (\Exception $e) {
@@ -73,18 +76,18 @@ class TableGateway extends AbstractTableGateway
 
     public function update($set, $where = null)
     {
-        $this->query = $this->getSql()->update();
+        $this->update = $this->getSql()->update();
 
         if (!empty($where)) {
-            $this->query->where($where);
+            $this->update->where($where);
         } else {
             throw new Exception("Error Processing Request, where condition cannot be empty", 1);
         }
-        $this->query->set($set);
+        $this->update->set($set);
 
         $this->beginTransaction();
         try {
-            $this->updateWith($this->query);
+            $this->updateWith($this->update);
             $this->commit();
         } catch (\Exception $e) {
             $this->rollback();
@@ -96,17 +99,17 @@ class TableGateway extends AbstractTableGateway
 
     public function delete($where)
     {
-        $this->query = $this->getSql()->delete();
+        $this->delete = $this->getSql()->delete();
 
         if (!empty($where)) {
-            $this->query->where($where);
+            $this->delete->where($where);
         } else {
             throw new Exception("Error Processing Request, where condition cannot be empty", 1);
         }
 
         $this->beginTransaction();
         try {
-            $this->deleteWith($this->query);
+            $this->deleteWith($this->delete);
             $this->commit();
         } catch (\Exception $e) {
             $this->rollback();
@@ -120,7 +123,7 @@ class TableGateway extends AbstractTableGateway
     {
         if (!empty($join)) {
             foreach ($join as $table) {
-                $this->query->join(
+                $this->select->join(
                     array(
                     (isset($table['alias']) ? $table['alias'] : $table['table_name']) => $table['table_name']),
                     $table['join_condition'],
@@ -135,49 +138,49 @@ class TableGateway extends AbstractTableGateway
 
     public function group($group)
     {
-        $this->query->group($group);
+        $this->select->group($group);
         return $this;
     }
 
     public function having($having)
     {
-        $this->query->having($having);
+        $this->select->having($having);
         return $this;
     }
 
     public function order($order)
     {
-        $this->query->order($order);
+        $this->select->order($order);
         return $this;
     }
 
     public function limit($limit)
     {
-        $this->query->limit($limit);
+        $this->select->limit($limit);
         return $this;
     }
 
     public function offset($offset)
     {
-        $this->query->offset($offset);
+        $this->select->offset($offset);
         return $this;
     }
 
     public function findAll()
     {
-        return $this->selectWith($this->query);
+        return $this->selectWith($this->select);
     }
 
     public function findOne()
     {
-        $this->query->limit(1);
+        $this->select->limit(1);
 
-        return $this->selectWith($this->query);
+        return $this->selectWith($this->select);
     }
 
     public function findPaginated($paginator = null)
     {
-        $result = new Paginator(new PaginatorIterator($this->query, $this->adapter));
+        $result = new Paginator(new PaginatorIterator($this->select, $this->adapter));
         $result->setCurrentPageNumber(isset($paginator['page']) ? $paginator['page'] : 0)
             ->setItemCountPerPage((isset($paginator['countPerPage']) ? $paginator['countPerPage'] : 20))
             ->setPageRange((isset($paginator['pageRange']) ? $paginator['pageRange'] : 10));
@@ -186,13 +189,13 @@ class TableGateway extends AbstractTableGateway
 
     public function columns($columns = null)
     {
-        $this->query->columns($columns);
+        $this->select->columns($columns);
         return $this;
     }
 
     public function distinct()
     {
-        $this->query->quantifier(\Zend\Db\Sql\Select::QUANTIFIER_DISTINCT);
+        $this->select->quantifier(\Zend\Db\Sql\Select::QUANTIFIER_DISTINCT);
         return $this;
     }
 
